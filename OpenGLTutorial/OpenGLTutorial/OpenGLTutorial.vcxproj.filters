@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{91e8678d-20ba-4250-9578-bcb5bf2d2528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{be852d96-d44f-4590-9924-4ed40c1deac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Main">
+      <UniqueIdentifier>{91844e7d-315d-426a-99a4-de1f9e7b4ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\Default">
+      <UniqueIdentifier>{b1a9fc27-bd69-4d5d-a9d7-5eeda8e9ba07}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\glad.c">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vbo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ebo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vao.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main_postprocessing.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="main_extendmap.cpp">
+      <Filter>Source Files\Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="light.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="light.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="outline.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="outline.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="grass.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="boom.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="framebuffer.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="framebuffer.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="skybox.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="skybox.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="default_depthbuffer.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_depthbuffer.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_mesh.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_mesh.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_model.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_model.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_model.geom">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_model2.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="normal.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="normal.geom">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="asteroid.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="shadowmap.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="shadowmap.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="default_shadow.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_shadow.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="shadowcubemap.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="shadowcubemap.geom">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="shadowcubemap.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="default_extendmap.vert">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_extendmap.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_extendmap.geom">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="default_extendmap2.frag">
+      <Filter>Resource Files\Shaders\Default</Filter>
+    </None>
+    <None Include="blur.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vbo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ebo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="vao.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="picture.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="floor_diffuse.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="floor_specular.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
