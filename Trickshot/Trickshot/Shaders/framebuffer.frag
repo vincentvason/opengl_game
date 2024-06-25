@@ -39,7 +39,6 @@ void main()
 	*/
 
 	//Kernel Post-processing
-	
 	/*
 	vec3 color = vec3(0.0f);
 	for(int i = 0; i < 9; i++)
@@ -60,4 +59,6 @@ void main()
 	vec3 tone_mapping = vec3(1.0f) - exp(-fragment * exposure);
 
 	FragColor.rgb = pow(tone_mapping.rgb, vec3(1.0f / u_gamma));
+	
+	
 }

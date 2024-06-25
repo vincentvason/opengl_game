@@ -63,10 +63,8 @@ void main()
 	glViewport(0, 0, WIDTH, HEIGHT);
 
 	// Generates shaders
-	// No Bloom
 	Shader shader_default("Shaders/default.vert", "Shaders/default.frag", "Shaders/default.geom");
 	Shader shader_framebuffer("Shaders/framebuffer.vert", "Shaders/framebuffer.frag");
-	// Bloom
 
 	// Take care of all the light related things
 	glm::vec4 light_color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -107,15 +105,14 @@ void main()
 	// Load things
 	std::vector<Texture> textures =
 	{
-		Texture("Resources/Floor_BaseColor.jpg", Texture::DIFFUSE, 0)
+		Texture("Resources/Floor_BaseColor.jpg", Texture::DIFFUSE, 0),
+		Texture("Resources/Floor_AmbientOcclusion.jpg", Texture::SPECULAR, 1),
+		Texture("Resources/Floor_Normal.jpg", Texture::NORMAL, 2),
+		Texture("Resources/Floor_Height.jpg", Texture::DISPLACEMENT, 3)
 	};
 
 	// Plane with the texture
 	Mesh plane(vertices, indices, textures);
-	// Normal map for the plane
-	Texture normal_map_texture("Resources/Floor_Normal.jpg", Texture::NORMAL, 1);
-	Texture displacement_map_texture("Resources/Floor_Height.jpg", Texture::DISPLACEMENT, 2, GL_LINEAR);
-
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -141,30 +138,24 @@ void main()
 			//camera.Inputs(window);
 		}
 
-
 		// Bind the custom framebuffer
 		glBindFramebuffer(GL_FRAMEBUFFER, postproc.m_msaa_id);
+		// Enable depth testing since it's disabled when drawing the framebuffer rectangle
+		glEnable(GL_DEPTH_TEST);
+	
 		// Specify the color of the background
 		glClearColor(pow(0.07f, GAMMA), pow(0.13f, GAMMA), pow(0.17f, GAMMA), 1.0f);
 		// Clean the back buffer and depth buffer
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		// Enable depth testing since it's disabled when drawing the framebuffer rectangle
-		glEnable(GL_DEPTH_TEST);
-
+		
 		// Handles camera inputs (delete this if you have disabled VSync)
 		camera.handleInput(window);
 		// Updates and exports the camera matrix to the Vertex Shader
 		camera.setReferenceMatrices(45.0f, 0.1f, 100.0f);
 
-		shader_default.useProgram();
-		normal_map_texture.bindTexture();
-		glUniform1i(glGetUniformLocation(shader_default.m_id, "u_normal0"), 1);
-		displacement_map_texture.bindTexture();
-		glUniform1i(glGetUniformLocation(shader_default.m_id, "u_displacement0"), 2);
-
 		// Draw the normal model
 		plane.drawMesh(shader_default, camera);
-
+		
 		// Make it so the multisampling FBO is read while the post-processing FBO is drawn
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, postproc.m_msaa_id);
 		glBindFramebuffer(GL_DRAW_FRAMEBUFFER, postproc.m_gamma_id);

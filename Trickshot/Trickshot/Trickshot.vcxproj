@@ -137,7 +137,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\postproc.cpp" />
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="Components\camera.cpp" />
     <ClCompile Include="Components\ebo.cpp" />
@@ -152,7 +151,6 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\postproc.h" />
     <ClInclude Include="Components\camera.h" />
     <ClInclude Include="Components\ebo.h" />
     <ClInclude Include="Components\mesh.h" />

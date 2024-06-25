@@ -45,12 +45,6 @@ Texture::Texture(const char* image_path, Category texture_category, GLuint slot_
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	//Extra lines in case, choosing to use GL_CLAMP_TO_BORDER
-	//float flatColor[] = { 0.7f, 0.5f, 0.3f, 1.0f };
-	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, flatColor);
-
-	//GL_SRGB_ALPHA (4 channels) and GL_SRGB (3 channels or less) are used if do gamma correction, otherwise use GL_RGBA;
-
 	// Assigns the image to the OpenGL Texture object + Generates MipMaps
 	if (texture_category == Texture::NORMAL && num_col_ch == 4)
 	{

@@ -51,9 +51,6 @@
     <ClCompile Include="..\glad.c">
       <Filter>Resource Files\GLAD File</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\postproc.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\postproc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\vbo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\postproc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\postproc.h">

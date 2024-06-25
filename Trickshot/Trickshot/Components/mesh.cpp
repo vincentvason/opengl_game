@@ -60,30 +60,67 @@ Mesh::Mesh(std::vector <Vertex>& vertices, std::vector <GLuint>& indices, std::v
 void Mesh::drawMesh(Shader& shader, Camera& camera, glm::mat4 model_matrix, glm::vec3 translation, glm::quat rotation, glm::vec3 scale)
 {
 	shader.useProgram();
-	m_vao.bindVertexArray();
 
-	unsigned int number_diffuse = 0;
-	unsigned int number_specular = 0;
-
-	for (unsigned int i = 0; i < m_textures.size(); i++)
+	for (unsigned int i = 1; i < m_textures.size(); i++)
 	{
 		std::string number_string, uniform_name;
 		Texture::Category category = m_textures[i].m_category;
 
-		if (category == Texture::Category::DIFFUSE)
+		if (category == Texture::DIFFUSE)
 		{
-			number_string = std::to_string(number_diffuse++);
+			number_string = std::to_string(m_number_diffuse++);
 			uniform_name = ("u_diffuse" + number_string);
 		}
-		else if (category == Texture::Category::SPECULAR)
+		else if (category == Texture::SPECULAR)
 		{
-			number_string = std::to_string(number_specular++);
+			number_string = std::to_string(m_number_specular++);
 			uniform_name = ("u_specular" + number_string);
 		}
+		else if (category == Texture::NORMAL)
+		{
+			number_string = std::to_string(m_number_normal++);
+			uniform_name = ("u_normal" + number_string);
+		}
+		else if (category == Texture::DISPLACEMENT)
+		{
+			number_string = std::to_string(m_number_displacement++);
+			uniform_name = ("u_displacement" + number_string);
+		}
 
-		m_textures[i].initTextureSlot(shader, uniform_name.c_str(), i);
 		m_textures[i].bindTexture();
+		glUniform1i(glGetUniformLocation(shader.m_id, uniform_name.c_str()), i);
 	}
+
+	shader.useProgram();
+
+	std::string number_string, uniform_name;
+	Texture::Category category = m_textures[0].m_category;
+
+	if (category == Texture::DIFFUSE)
+	{
+		number_string = std::to_string(m_number_diffuse++);
+		uniform_name = ("u_diffuse" + number_string);
+	}
+	else if (category == Texture::SPECULAR)
+	{
+		number_string = std::to_string(m_number_specular++);
+		uniform_name = ("u_specular" + number_string);
+	}
+	else if (category == Texture::NORMAL)
+	{
+		number_string = std::to_string(m_number_normal++);
+		uniform_name = ("u_normal" + number_string);
+	}
+	else if (category == Texture::DISPLACEMENT)
+	{
+		number_string = std::to_string(m_number_displacement++);
+		uniform_name = ("u_displacement" + number_string);
+	}
+
+	m_textures[0].initTextureSlot(shader, uniform_name.c_str(), 0);
+	m_textures[0].bindTexture();
+
+	m_vao.bindVertexArray();
 
 	//Send Uniform Camera-related to Shader
 	glUniform3f(glGetUniformLocation(shader.m_id, "u_camera_position"), camera.m_position.x, camera.m_position.y, camera.m_position.z);
