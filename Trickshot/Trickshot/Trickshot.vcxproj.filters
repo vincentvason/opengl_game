@@ -51,6 +51,12 @@
     <ClCompile Include="..\glad.c">
       <Filter>Resource Files\GLAD File</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\postproc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\postproc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\camera.h">
@@ -77,6 +83,12 @@
     <ClInclude Include="Components\vbo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\postproc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\postproc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\default.frag" />
@@ -84,5 +96,52 @@
     <None Include="Shaders\default.vert" />
     <None Include="Shaders\framebuffer.frag" />
     <None Include="Shaders\framebuffer.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Ceiling_ambientOcclusion.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Ceiling_basecolor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Ceiling_height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Ceiling_normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Ceiling_opacity.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Floor_AmbientOcclusion.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Floor_BaseColor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Floor_Height.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Floor_Normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Floor_Roughness.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wall_ambientOcclusion.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wall_basecolor.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wall_height.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wall_normal.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\Wall_roughness.jpg">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
