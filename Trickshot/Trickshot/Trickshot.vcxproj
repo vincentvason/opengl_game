@@ -75,8 +75,8 @@
     <LibraryPath>C:\Users\ASUS\Documents\GitHub\opengl_game\Gunbrawl\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\ASUS\Documents\GitHub\opengl_game\Gunbrawl\Libraries\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\ASUS\Documents\GitHub\opengl_game\Gunbrawl\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\Libraries\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\Libraries\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
