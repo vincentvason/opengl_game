@@ -137,7 +137,34 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\glad.c" />
+    <ClCompile Include="Components\camera.cpp" />
+    <ClCompile Include="Components\ebo.cpp" />
+    <ClCompile Include="Components\mesh.cpp" />
+    <ClCompile Include="Components\model.cpp" />
+    <ClCompile Include="Components\shader.cpp" />
+    <ClCompile Include="Components\stb.cpp" />
+    <ClCompile Include="Components\texture.cpp" />
+    <ClCompile Include="Components\vao.cpp" />
+    <ClCompile Include="Components\vbo.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Components\camera.h" />
+    <ClInclude Include="Components\ebo.h" />
+    <ClInclude Include="Components\mesh.h" />
+    <ClInclude Include="Components\model.h" />
+    <ClInclude Include="Components\shader.h" />
+    <ClInclude Include="Components\texture.h" />
+    <ClInclude Include="Components\vao.h" />
+    <ClInclude Include="Components\vbo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\default.frag" />
+    <None Include="Shaders\default.geom" />
+    <None Include="Shaders\default.vert" />
+    <None Include="Shaders\framebuffer.frag" />
+    <None Include="Shaders\framebuffer.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
