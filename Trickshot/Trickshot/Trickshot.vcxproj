@@ -144,6 +144,7 @@
     <ClCompile Include="Components\model.cpp" />
     <ClCompile Include="Components\postproc.cpp" />
     <ClCompile Include="Components\shader.cpp" />
+    <ClCompile Include="Components\stage.cpp" />
     <ClCompile Include="Components\stb.cpp" />
     <ClCompile Include="Components\texture.cpp" />
     <ClCompile Include="Components\vao.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Components\model.h" />
     <ClInclude Include="Components\postproc.h" />
     <ClInclude Include="Components\shader.h" />
+    <ClInclude Include="Components\stage.h" />
     <ClInclude Include="Components\texture.h" />
     <ClInclude Include="Components\vao.h" />
     <ClInclude Include="Components\vbo.h" />

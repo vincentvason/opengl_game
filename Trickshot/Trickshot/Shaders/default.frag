@@ -41,8 +41,8 @@ vec4 pointLight()
 	float layer_depths = 1.0f / num_layers;
 	float current_layer_depths = 0.0f;
 	
-	// Remove the z division if you want less aberated results
-	vec2 s_vector = view_direction.xy / view_direction.z * height_scale; 
+	// s_vector = view_direction.xy / view_direction.z * height_scale;
+	vec2 s_vector = vec2(0.0f); 
     vec2 delta_uvs = s_vector / num_layers;
 	
 	vec2 texture_coordinator = io_texture_coordinator;
@@ -64,10 +64,12 @@ vec4 pointLight()
 	texture_coordinator = prev_texture_coordinator * weight + texture_coordinator * (1.0f - weight);
 
 	// Get rid of anything outside the normal range
+	/*
 	if(texture_coordinator.x > 1.0 || texture_coordinator.y > 1.0 || texture_coordinator.x < 0.0 || texture_coordinator.y < 0.0)
 	{
 		discard;
-	}	
+	}
+	*/
 
 	//Diffuse Lighting
 	//vec3 normal = normalize(io_normal_vector);

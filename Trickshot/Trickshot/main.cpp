@@ -1,5 +1,6 @@
 #include "Components/model.h"
 #include "Components/postproc.h"
+#include "Components/stage.h"
 
 void main()
 {
@@ -11,25 +12,6 @@ void main()
 
 	// Controls the gamma function
 	const float GAMMA = 2.2f;
-
-	// Vertices for plane with texture
-	// First Tutorial (does not need TBN)
-
-	std::vector<Vertex> vertices =
-	{
-		Vertex{glm::vec3(-1.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 0.0f)},
-		Vertex{glm::vec3(-1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(0.0f, 1.0f)},
-		Vertex{glm::vec3(1.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 1.0f)},
-		Vertex{glm::vec3(1.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 1.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec2(1.0f, 0.0f)}
-	};
-
-
-	// Indices for plane with texture
-	std::vector<GLuint> indices =
-	{
-		0, 1, 2,
-		0, 2, 3
-	};
 
 	// Initialize GLFW
 	glfwInit();
@@ -66,17 +48,6 @@ void main()
 	Shader shader_default("Shaders/default.vert", "Shaders/default.frag", "Shaders/default.geom");
 	Shader shader_framebuffer("Shaders/framebuffer.vert", "Shaders/framebuffer.frag");
 
-	// Take care of all the light related things
-	glm::vec4 light_color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-	glm::vec3 light_position = glm::vec3(0.5f, 0.5f, 0.5f);
-
-	shader_default.useProgram();
-	glUniform4f(glGetUniformLocation(shader_default.m_id, "u_light_color"), light_color.x, light_color.y, light_color.z, light_color.w);
-	glUniform3f(glGetUniformLocation(shader_default.m_id, "u_light_position"), light_position.x, light_position.y, light_position.z);
-	shader_framebuffer.useProgram();
-	glUniform1i(glGetUniformLocation(shader_framebuffer.m_id, "u_screen_texture"), 0);
-	glUniform1f(glGetUniformLocation(shader_framebuffer.m_id, "u_gamma"), GAMMA);
-
 	// Enables Options Buffer
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_MULTISAMPLE);
@@ -84,8 +55,48 @@ void main()
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CCW);
 
+	// Use this to disable VSync (not recommended)
+	//glfwSwapInterval(0);
+
+	// Load things
+	std::vector<Texture> textures_ceiling =
+	{
+		Texture("Resources/Ceiling_basecolor.jpg", Texture::DIFFUSE, 0),
+		Texture("Resources/Ceiling_ambientOcclusion.jpg", Texture::SPECULAR, 1),
+		Texture("Resources/Ceiling_normal.jpg", Texture::NORMAL, 2),
+		Texture("Resources/Ceiling_height.png", Texture::DISPLACEMENT, 3)
+	};
+	std::vector<Texture> textures_wall =
+	{
+		Texture("Resources/Wall_basecolor.jpg", Texture::DIFFUSE, 0),
+		Texture("Resources/Wall_ambientOcclusion.jpg", Texture::SPECULAR, 1),
+		Texture("Resources/Wall_normal.jpg", Texture::NORMAL, 2),
+		Texture("Resources/Wall_height.png", Texture::DISPLACEMENT, 3)
+	};
+	std::vector<Texture> textures_floor =
+	{
+		Texture("Resources/Floor_BaseColor.jpg", Texture::DIFFUSE, 0),
+		Texture("Resources/Floor_AmbientOcclusion.jpg", Texture::SPECULAR, 1),
+		Texture("Resources/Floor_Normal.jpg", Texture::NORMAL, 2),
+		Texture("Resources/Floor_Height.jpg", Texture::DISPLACEMENT, 3)
+	};
+
+	// Plane with the texture
+	Stage stage(glm::vec3(8.0f, 4.0f, 8.0f), textures_ceiling, textures_wall, textures_floor);
+
 	// Creates camera object
-	Camera camera(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f), 0.005f);
+	Camera camera(WIDTH, HEIGHT, stage.m_camera_start_position, 0.005f);
+
+	// Take care of all the light related things
+	glm::vec4 light_color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	glm::vec3 light_position = glm::vec3(4.0f, 3.2f, 4.0f);
+
+	shader_default.useProgram();
+	glUniform4f(glGetUniformLocation(shader_default.m_id, "u_light_color"), light_color.x, light_color.y, light_color.z, light_color.w);
+	glUniform3f(glGetUniformLocation(shader_default.m_id, "u_light_position"), light_position.x, light_position.y, light_position.z);
+	shader_framebuffer.useProgram();
+	glUniform1i(glGetUniformLocation(shader_framebuffer.m_id, "u_screen_texture"), 0);
+	glUniform1f(glGetUniformLocation(shader_framebuffer.m_id, "u_gamma"), GAMMA);
 
 	// Post-Processing
 	PostProcessing postproc(WIDTH, HEIGHT);
@@ -98,21 +109,6 @@ void main()
 	double time_diff;
 	// Keeps track of the amount of frames in time_diff
 	unsigned int counter = 0;
-
-	// Use this to disable VSync (not advized)
-	//glfwSwapInterval(0);
-
-	// Load things
-	std::vector<Texture> textures =
-	{
-		Texture("Resources/Floor_BaseColor.jpg", Texture::DIFFUSE, 0),
-		Texture("Resources/Floor_AmbientOcclusion.jpg", Texture::SPECULAR, 1),
-		Texture("Resources/Floor_Normal.jpg", Texture::NORMAL, 2),
-		Texture("Resources/Floor_Height.jpg", Texture::DISPLACEMENT, 3)
-	};
-
-	// Plane with the texture
-	Mesh plane(vertices, indices, textures);
 
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -154,7 +150,7 @@ void main()
 		camera.setReferenceMatrices(45.0f, 0.1f, 100.0f);
 
 		// Draw the normal model
-		plane.drawMesh(shader_default, camera);
+		stage.drawStage(shader_default, camera);
 		
 		// Make it so the multisampling FBO is read while the post-processing FBO is drawn
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, postproc.m_msaa_id);
