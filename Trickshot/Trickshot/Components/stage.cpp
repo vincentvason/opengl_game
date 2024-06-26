@@ -77,6 +77,9 @@ Stage::Stage(glm::vec3 room_size, std::vector<Texture> texture_top, std::vector<
 		m_camera_start_position[i] = std::min(m_camera_start_position[i], room_size[i] - camera_thresold);
 		m_camera_start_position[i] = std::max(m_camera_start_position[i], camera_thresold);
 	}
+
+	m_room_size = room_size;
+	m_camera_threshold = camera_thresold;
 }
 
 void Stage::drawStage(Shader& shader, Camera camera)

@@ -38,5 +38,5 @@ public:
 	Camera(int width, int height, glm::vec3 position, float camera_speed_default = 0.1f, float mouse_sensitivity_default = 250.0f);
 	void setReferenceMatrices(float fov_deg, float near_plane, float far_plane);
 	void updateReferenceMatricesToShader(Shader& shader, const char* uniform);
-	void handleInput(GLFWwindow* window);
+	void handleInput(GLFWwindow* window, glm::vec3 world_space = glm::vec3{0.0f}, float thresould = 0.0f);
 };

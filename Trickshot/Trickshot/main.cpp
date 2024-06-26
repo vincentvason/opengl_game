@@ -4,8 +4,8 @@
 
 void main()
 {
-	const unsigned int WIDTH = 800;
-	const unsigned int HEIGHT = 800;
+	const unsigned int WIDTH = 1024;
+	const unsigned int HEIGHT = 768;
 
 	// Number of MSAA_SAMPLES per pixel for MSAA
 	const unsigned int MSAA_SAMPLES = 8;
@@ -145,7 +145,7 @@ void main()
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		
 		// Handles camera inputs (delete this if you have disabled VSync)
-		camera.handleInput(window);
+		camera.handleInput(window, stage.m_room_size, stage.m_camera_threshold);
 		// Updates and exports the camera matrix to the Vertex Shader
 		camera.setReferenceMatrices(45.0f, 0.1f, 100.0f);
 

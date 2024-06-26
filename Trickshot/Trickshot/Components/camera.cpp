@@ -48,7 +48,7 @@ void Camera::updateReferenceMatricesToShader(Shader& shader, const char* uniform
 
 
 
-void Camera::handleInput(GLFWwindow* window)
+void Camera::handleInput(GLFWwindow* window, glm::vec3 world_space, float thresould)
 {
 	//Forward, Backward, Left, Right
 	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
@@ -76,15 +76,19 @@ void Camera::handleInput(GLFWwindow* window)
 	{
 		m_position += m_speed * -m_up;
 	}
-	//Run/Walk
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+
+	//World Limitation
+	if (world_space != glm::vec3{ 0.0f })
 	{
-		m_speed = m_camera_speed_default;
+		for (int i = 0; i < 3; i++)
+		{
+			m_position[i] = std::min(m_position[i], world_space[i] - thresould);
+			m_position[i] = std::max(m_position[i], thresould);
+		}
 	}
-	else if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE)
-	{
-		m_speed = m_camera_speed_default * 5.0f;
-	}
+
+	std::cout << "Pos:" << m_position.x << "," << m_position.y << "," << m_position.z << " Orn:" << m_orientation.x << "," << m_orientation.y << "," << m_orientation.z << std::endl;
+
 	//Mouse
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)
 	{
