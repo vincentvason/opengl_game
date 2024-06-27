@@ -24,6 +24,8 @@ public:
 	glm::vec3 m_up = glm::vec3(0.0, 1.0f, 0.0f);
 
 	glm::mat4 m_camera_matrix = glm::mat4(1.0f);
+	glm::mat4 m_view_matrix = glm::mat4(1.0f);
+	glm::mat4 m_projection_matrix = glm::mat4(1.0f);
 
 	//Prevent the camera from jumping around when first clicking left click
 	bool m_first_click = true;

@@ -21,7 +21,7 @@ int main()
 	//mainFaceCulling();
 
 	// Transparency & Blending - see "main_blending.cpp"
-	//mainBlending();
+	mainBlending();
 
 	// Framebuffer & Post-processing - see "main_faceculling.cpp"
 	// MSAA, Gamma Correction
@@ -40,5 +40,5 @@ int main()
 	//mainShadow();
 
 	// Extended Map, HDR, Bloom
-	mainExtendMap();
+	//mainExtendMap();
 }

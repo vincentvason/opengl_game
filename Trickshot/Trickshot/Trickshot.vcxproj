@@ -140,6 +140,7 @@
     <ClCompile Include="..\glad.c" />
     <ClCompile Include="Components\camera.cpp" />
     <ClCompile Include="Components\ebo.cpp" />
+    <ClCompile Include="Components\laser.cpp" />
     <ClCompile Include="Components\mesh.cpp" />
     <ClCompile Include="Components\model.cpp" />
     <ClCompile Include="Components\postproc.cpp" />
@@ -154,6 +155,7 @@
   <ItemGroup>
     <ClInclude Include="Components\camera.h" />
     <ClInclude Include="Components\ebo.h" />
+    <ClInclude Include="Components\laser.h" />
     <ClInclude Include="Components\mesh.h" />
     <ClInclude Include="Components\model.h" />
     <ClInclude Include="Components\postproc.h" />
@@ -169,6 +171,8 @@
     <None Include="Shaders\default.vert" />
     <None Include="Shaders\framebuffer.frag" />
     <None Include="Shaders\framebuffer.vert" />
+    <None Include="Shaders\laser.frag" />
+    <None Include="Shaders\laser.vert" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Ceiling_ambientOcclusion.jpg" />

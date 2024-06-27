@@ -93,32 +93,35 @@ void Mesh::drawMesh(Shader& shader, Camera& camera, glm::mat4 model_matrix, glm:
 
 	shader.useProgram();
 
-	std::string number_string, uniform_name;
-	Texture::Category category = m_textures[0].m_category;
+	if (m_textures.size() > 0)
+	{
+		std::string number_string, uniform_name;
+		Texture::Category category = m_textures[0].m_category;
 
-	if (category == Texture::DIFFUSE)
-	{
-		number_string = std::to_string(m_number_diffuse++);
-		uniform_name = ("u_diffuse" + number_string);
-	}
-	else if (category == Texture::SPECULAR)
-	{
-		number_string = std::to_string(m_number_specular++);
-		uniform_name = ("u_specular" + number_string);
-	}
-	else if (category == Texture::NORMAL)
-	{
-		number_string = std::to_string(m_number_normal++);
-		uniform_name = ("u_normal" + number_string);
-	}
-	else if (category == Texture::DISPLACEMENT)
-	{
-		number_string = std::to_string(m_number_displacement++);
-		uniform_name = ("u_displacement" + number_string);
-	}
+		if (category == Texture::DIFFUSE)
+		{
+			number_string = std::to_string(m_number_diffuse++);
+			uniform_name = ("u_diffuse" + number_string);
+		}
+		else if (category == Texture::SPECULAR)
+		{
+			number_string = std::to_string(m_number_specular++);
+			uniform_name = ("u_specular" + number_string);
+		}
+		else if (category == Texture::NORMAL)
+		{
+			number_string = std::to_string(m_number_normal++);
+			uniform_name = ("u_normal" + number_string);
+		}
+		else if (category == Texture::DISPLACEMENT)
+		{
+			number_string = std::to_string(m_number_displacement++);
+			uniform_name = ("u_displacement" + number_string);
+		}
 
-	m_textures[0].initTextureSlot(shader, uniform_name.c_str(), 0);
-	m_textures[0].bindTexture();
+		m_textures[0].initTextureSlot(shader, uniform_name.c_str(), 0);
+		m_textures[0].bindTexture();
+	}
 
 	m_vao.bindVertexArray();
 

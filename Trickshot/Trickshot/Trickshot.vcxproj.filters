@@ -57,6 +57,9 @@
     <ClCompile Include="Components\stage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Components\laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Components\camera.h">
@@ -89,6 +92,9 @@
     <ClInclude Include="Components\stage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Components\laser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\default.frag" />
@@ -96,6 +102,8 @@
     <None Include="Shaders\default.vert" />
     <None Include="Shaders\framebuffer.frag" />
     <None Include="Shaders\framebuffer.vert" />
+    <None Include="Shaders\laser.vert" />
+    <None Include="Shaders\laser.frag" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Resources\Ceiling_ambientOcclusion.jpg">

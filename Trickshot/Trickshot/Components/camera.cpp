@@ -24,16 +24,13 @@ Camera::Camera(int width, int height, glm::vec3 position, float camera_speed_def
 void Camera::setReferenceMatrices(float fov_deg, float near_plane, float far_plane)
 {
 	//Store matrics
-	glm::mat4 view_matrix = glm::mat4(1.0f);
-	glm::mat4 projection_matrix = glm::mat4(1.0f);
-	
-	//Make camera look in the right direction from the right position
-	view_matrix = glm::lookAt(m_position, m_position + m_orientation, m_up);
-	//Add perspective to the scene
-	projection_matrix = glm::perspective(glm::radians(fov_deg), (float)m_width / m_height, near_plane, far_plane);
+	//Make camera look in the right direction from the right position (World to View)
+	m_view_matrix = glm::lookAt(m_position, m_position + m_orientation, m_up);
+	//Add perspective to the scene (View to Projection)
+	m_projection_matrix = glm::perspective(glm::radians(fov_deg), (float)m_width / m_height, near_plane, far_plane);
 
 	//Exports te camera matrix to the matrix shader
-	m_camera_matrix = projection_matrix * view_matrix;
+	m_camera_matrix = m_projection_matrix * m_view_matrix;
 }
 
 /// <summary>
@@ -86,8 +83,6 @@ void Camera::handleInput(GLFWwindow* window, glm::vec3 world_space, float threso
 			m_position[i] = std::max(m_position[i], thresould);
 		}
 	}
-
-	std::cout << "Pos:" << m_position.x << "," << m_position.y << "," << m_position.z << " Orn:" << m_orientation.x << "," << m_orientation.y << "," << m_orientation.z << std::endl;
 
 	//Mouse
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS)

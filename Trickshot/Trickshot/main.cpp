@@ -1,6 +1,7 @@
 #include "Components/model.h"
 #include "Components/postproc.h"
 #include "Components/stage.h"
+#include "Components/laser.h"
 
 void main()
 {
@@ -46,14 +47,17 @@ void main()
 
 	// Generates shaders
 	Shader shader_default("Shaders/default.vert", "Shaders/default.frag", "Shaders/default.geom");
+	Shader shader_laser("Shaders/laser.vert", "Shaders/laser.frag");
 	Shader shader_framebuffer("Shaders/framebuffer.vert", "Shaders/framebuffer.frag");
 
 	// Enables Options Buffer
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_MULTISAMPLE);
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_FRONT);
-	glFrontFace(GL_CCW);
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
+	//sglFrontFace(GL_CCW);
+	glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
+	glBlendEquation(GL_FUNC_ADD);
 
 	// Use this to disable VSync (not recommended)
 	//glfwSwapInterval(0);
@@ -83,9 +87,10 @@ void main()
 
 	// Plane with the texture
 	Stage stage(glm::vec3(8.0f, 4.0f, 8.0f), textures_ceiling, textures_wall, textures_floor);
+	Laser laser;
 
 	// Creates camera object
-	Camera camera(WIDTH, HEIGHT, stage.m_camera_start_position, 0.005f);
+	Camera camera(WIDTH, HEIGHT, stage.m_camera_start_position, 0.002f);
 
 	// Take care of all the light related things
 	glm::vec4 light_color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -147,10 +152,13 @@ void main()
 		// Handles camera inputs (delete this if you have disabled VSync)
 		camera.handleInput(window, stage.m_room_size, stage.m_camera_threshold);
 		// Updates and exports the camera matrix to the Vertex Shader
-		camera.setReferenceMatrices(45.0f, 0.1f, 100.0f);
+		camera.setReferenceMatrices(45.0f, 0.01f, 100.0f);
 
 		// Draw the normal model
 		stage.drawStage(shader_default, camera);
+		glEnable(GL_BLEND);
+		laser.drawLaser(shader_laser, camera);
+		glDisable(GL_BLEND);
 		
 		// Make it so the multisampling FBO is read while the post-processing FBO is drawn
 		glBindFramebuffer(GL_READ_FRAMEBUFFER, postproc.m_msaa_id);
