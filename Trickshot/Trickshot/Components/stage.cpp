@@ -63,12 +63,14 @@ Stage::Stage(glm::vec3 room_size, std::vector<Texture> texture_top, std::vector<
 	std::vector<GLuint> indices_ccw = { 0, 1, 2, 0, 2, 3 };
 	std::vector<GLuint> indices_cw = { 0, 2, 1, 0, 3, 2, };
 
-	m_wall1 = Mesh(vertices_side1, indices_ccw, textures_side);
-	m_wall2 = Mesh(vertices_side2, indices_cw, textures_side);
-	m_wall3 = Mesh(vertices_side3, indices_cw, textures_side);
-	m_wall4 = Mesh(vertices_side4, indices_ccw, textures_side);
-	m_ceiling = Mesh(vertices_top, indices_ccw, texture_top);
-	m_floor = Mesh(vertices_bottom, indices_cw, textures_bottom);
+	m_meshes.push_back(Mesh(vertices_side1, indices_ccw, textures_side));
+	m_meshes.push_back(Mesh(vertices_side2, indices_cw, textures_side));
+	m_meshes.push_back(Mesh(vertices_side3, indices_cw, textures_side));
+	m_meshes.push_back(Mesh(vertices_side4, indices_ccw, textures_side));
+	m_meshes.push_back(Mesh(vertices_top, indices_ccw, texture_top));
+	m_meshes.push_back(Mesh(vertices_bottom, indices_cw, textures_bottom));
+
+	
 
 	m_camera_start_position = room_size * camera_pos;
 	
@@ -84,12 +86,10 @@ Stage::Stage(glm::vec3 room_size, std::vector<Texture> texture_top, std::vector<
 
 void Stage::drawStage(Shader& shader, Camera camera)
 {
-	m_wall1.drawMesh(shader, camera);
-	m_wall2.drawMesh(shader, camera);
-	m_wall3.drawMesh(shader, camera);
-	m_wall4.drawMesh(shader, camera);
-	m_ceiling.drawMesh(shader, camera);
-	m_floor.drawMesh(shader, camera);
+	for(int i = 0; i < m_meshes.size(); i++)
+	{
+		m_meshes[i].drawMesh(shader, camera);
+	}	
 }
 
 

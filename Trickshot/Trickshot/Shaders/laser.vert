@@ -11,18 +11,13 @@ out vec3 io_position;
 out vec3 io_color;
 
 //Uniform variables
-uniform vec3 u_camera_positon;
-uniform vec3 u_camera_orientation;
 uniform mat4 u_camera_matrix;
 uniform mat4 u_model_matrix;
-uniform mat4 u_camera_view_matrix;
 
 void main()
 {
-	vec4 position = inverse(u_camera_view_matrix) * vec4((l_position * vec3(-1.0f)), 1.0f);
-
-	io_position = vec3(u_model_matrix * position);
-	gl_Position = u_camera_matrix * position;
+	io_position = vec3(u_model_matrix * vec4(l_position, 1.0f));
+	gl_Position = u_camera_matrix * vec4(l_position, 1.0f);
 
 	io_color = l_color;
 }

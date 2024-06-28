@@ -31,6 +31,15 @@ void Camera::setReferenceMatrices(float fov_deg, float near_plane, float far_pla
 
 	//Exports te camera matrix to the matrix shader
 	m_camera_matrix = m_projection_matrix * m_view_matrix;
+
+	/*
+	glm::vec4 front_position = glm::vec4(glm::vec3(0.0f, 0.0f, 1.0f) * -1.0f, 1.0f);
+	glm::vec4 front_vector = glm::inverse(m_view_matrix) * front_position;
+
+	printf("Pos: %.2f, %.2f, %.2f",m_position.x, m_position.y, m_position.z);
+	printf("Ori: %.2f, %.2f, %.2f", m_orientation.x, m_orientation.y, m_orientation.z);
+	printf("Fnt: %.2f, %.2f, %.2f, %.2f\n", front_vector.x, front_vector.y, front_vector.z, front_vector.w);
+	*/
 }
 
 /// <summary>

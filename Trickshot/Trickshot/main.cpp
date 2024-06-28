@@ -59,8 +59,8 @@ void main()
 	glBlendFunc(GL_SRC_ALPHA, GL_DST_ALPHA);
 	glBlendEquation(GL_FUNC_ADD);
 
-	// Use this to disable VSync (not recommended)
-	//glfwSwapInterval(0);
+	// Use this to enable VSync
+	glfwSwapInterval(1);
 
 	// Load things
 	std::vector<Texture> textures_ceiling =
@@ -87,7 +87,7 @@ void main()
 
 	// Plane with the texture
 	Stage stage(glm::vec3(8.0f, 4.0f, 8.0f), textures_ceiling, textures_wall, textures_floor);
-	Laser laser;
+	Laser laser(stage.m_meshes);
 
 	// Creates camera object
 	Camera camera(WIDTH, HEIGHT, stage.m_camera_start_position, 0.002f);
@@ -135,8 +135,6 @@ void main()
 			time_prev = time_crnt;
 			counter = 0;
 
-			// Use this if you have disabled VSync
-			//camera.Inputs(window);
 		}
 
 		// Bind the custom framebuffer
