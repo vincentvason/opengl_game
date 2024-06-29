@@ -107,6 +107,9 @@ void PostProcessing::initGamma(float gamma_value)
 	m_gamma = gamma_value;
 }
 
+/// <summary>
+/// Delete Post-processing related to FBO
+/// </summary>
 void PostProcessing::deleteFBO()
 {
 	glDeleteFramebuffers(1, &m_msaa_id);

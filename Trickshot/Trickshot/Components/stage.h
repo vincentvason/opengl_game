@@ -1,6 +1,9 @@
 #pragma once
 #include "mesh.h"
 
+/// <summary>
+/// Stage's Constructor
+/// </summary>
 class Stage
 {
 public:
@@ -12,8 +15,5 @@ public:
 public:
 	Stage(glm::vec3 room_size, std::vector<Texture> texture_top, std::vector<Texture> textures_side, std::vector<Texture> textures_bottom, glm::vec3 camera_pos = glm::vec3(0.5f, 0.0f, 0.5f), float camera_thresold = 0.4);
 	void drawStage(Shader& shader, Camera camera);
-
-private:
-	
 	
 };

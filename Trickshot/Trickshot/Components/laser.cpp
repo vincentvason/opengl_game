@@ -1,11 +1,21 @@
 #include "laser.h"
 
+/// <summary>
+/// Laser's Constructor
+/// </summary>
+/// <param name="collision_meshes">Mesh that's check in collision</param>
+/// <param name="weight">Weight of Laser</param>
 Laser::Laser(std::vector<Mesh> collision_meshes, float weight)
 {
 	m_weight = weight;
 	m_collision_meshes = collision_meshes;
 }
 
+/// <summary>
+/// Draw Laser
+/// </summary>
+/// <param name="shader">Shader Program</param>
+/// <param name="camera">Camera</param>
 void Laser::drawLaser(Shader& shader, Camera camera)
 {
 	m_src = glm::vec3(-0.04f, 0.02f, 0.0f);
@@ -29,6 +39,12 @@ void Laser::drawLaser(Shader& shader, Camera camera)
 
 }
 
+/// <summary>
+/// Generate Mesh Structure
+/// </summary>
+/// <param name="camera"></param>
+/// <param name="src"></param>
+/// <param name="dst"></param>
 void Laser::generateMeshStructure(Camera camera, glm::vec3 src, glm::vec3 dst)
 {
 	std::vector<glm::vec4> points =

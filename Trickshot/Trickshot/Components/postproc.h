@@ -1,6 +1,9 @@
 #pragma once
 #include "mesh.h"
 
+/// <summary>
+/// Post Processing Class
+/// </summary>
 class PostProcessing
 {
 private:
