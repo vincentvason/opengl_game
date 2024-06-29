@@ -10,4 +10,4 @@ This project includes:
 - Gamma Correction
 - Multisample anti-aliasing
 
-Please see (the project's wiki)[https://github.com/vincentvason/opengl_game/wiki] for section highlights and sample codes.
+Please see [the project's wiki](https://github.com/vincentvason/opengl_game/wiki) for section highlights and sample codes.
